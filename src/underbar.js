@@ -34,12 +34,22 @@
   // Return an array of the first n elements of an array. If n is undefined,
   // return just the first element.
   _.first = function(array, n) {
+    if ( n === 0 ) {
+      return [];
+    }
     return n === undefined ? array[0] : array.slice(0, n);
   };
 
   // Like first, but for the last elements. If n is undefined, return just the
   // last element.
   _.last = function(array, n) {
+    if ( n === 0 ) {
+      return [];
+    }
+    if (n > array.length) {
+      return array;
+    }
+    return n === undefined ? array[array.length - 1] : array.slice (-n);
   };
 
   // Call iterator(value, key, collection) for each element of collection.
@@ -48,6 +58,24 @@
   // Note: _.each does not have a return value, but rather simply runs the
   // iterator function over each item in the input collection.
   _.each = function(collection, iterator) {
+    if (iterator === undefined) {
+      iterator = _.identity;
+    }
+
+    if (Array.isArray(collection)) {
+      for (let i = 0; i < collection.length; i++) {
+        iterator(collection[i]);
+      }
+    } else if (typeof collection === 'object') {
+      for (key in collection) {
+        iterator(collection[key]);
+      }
+    }
+
+    //takes both array and object as collection
+    //default iterator if no iterator value is provided
+
+    //no output value
   };
 
   // Returns the index at which value can be found in the array, or -1 if value
