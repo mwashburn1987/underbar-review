@@ -156,8 +156,48 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
+    //Input - A collection (an array or an object), an iterator (if none provided we must have a default), an accumulator (if none is passed,
+    //first element is used)
+    //Output - A single value
+    //Constraints - None
+    //Edge Cases - iterator or accumulator might not be passed in, empty collection
+
+    //Explanation - Takes our collection and will simplify it to a single value based on the specifications of the iterator.
+    // Takes our collection and returns a single value by repetitively applying something to each part of our collection
+
+    //PSEUDO
+    //Check to see if iterator is undefined
+    if ( iterator === undefined) {
+      iterator = _.identity;
+    }
+      //If it is undefined, set to default of _.identity
+    //Else
+
+    //Check to see if accumulator is undefined
+    if ( accumulator === undefined) {
+       //If it is, set it = to first element of collection
+      if ( Array.isArray(collection)) {
+        accumulator = collection[0];
+        var newCollection = collection.slice(1, collection.length);
+        newCollection.forEach(function(item) {
+          iterator;
+        })
+      }
+    }
+
+      //Then Create a new collection, set it equal to remainder of the original collection
+      //For each element in the collection, Call anonymous function taking in the element
+      //Set accumulator equal to the result of iterator being applied to the element
+
+    //Else apply same steps but with already defined accumulator
+    //Return accumulator
+
+    //Refine code with helper
+
+
   };
 
+    //
   // Determine if the array or object contains a given value (using `===`).
   _.contains = function(collection, target) {
     // TIP: Many iteration problems can be most easily expressed in
